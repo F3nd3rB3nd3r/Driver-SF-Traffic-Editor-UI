@@ -1,3 +1,6 @@
+This is an AI generated tool that would let you change the existing sets with the original limitations of the game. This is not for limit extension
+
+
 # DriverSF Traffic Editor v0.1.6.1 — Build fix (plain names and Contains search)
 
 Standalone **C# WPF/.NET 10** project for Visual Studio 2026.
