@@ -1,0 +1,214 @@
+﻿setting_hash,setting_name,frequency,table_index,discovery_picks,prior_x32dbg_picks,evidence
+0x0440BCDB,SM2 Heat From Above ,0,166,2055,,ASI discovery; TrafficRandomizer_tables(5).csv
+0x0440BCDB,SM2 Heat From Above ,0,178,9,,ASI discovery; TrafficRandomizer_tables(5).csv
+0x0F2F8F6B,Chapter 6 - Its for charity,0,172,,,ASI runtime DISCOVER; TrafficRandomizer(2).log line 2142 at 2026-10-11 13:31:54.209 (count unavailable)
+0x0F2F8F6B,Chapter 6 - Its for charity,0,175,1306,,ASI discovery
+0x19467768,Chapter 3 Shakedown,0,168,4721,,ASI discovery
+0x19D51C62,Chapter 7 Tickingclock,0,162,1279,,ASI discovery
+0x1B53D236,Chase traffic 1,0,26,3,,ASI discovery
+0x1B53D236,Chase traffic 1,0,34,66,,ASI discovery
+0x1B53D236,Chase traffic 1,0,42,7,,ASI discovery
+0x1B53D236,Chase traffic 1,0,58,158,,ASI discovery
+0x1B53D236,Chase traffic 1,0,90,131,,ASI discovery
+0x1B53D236,Chase traffic 1,0,186,71,,ASI discovery
+0x1C3E162F,Chase traffic 5,0,25,,,ASI runtime DISCOVER; TrafficRandomizer(2).log line 2711 at 2026-10-11 13:58:43.084 (count unavailable)
+0x1C3E162F,Chase traffic 5,0,37,52,,ASI discovery
+0x1C3E162F,Chase traffic 5,0,54,,,ASI runtime DISCOVER; TrafficRandomizer(2).log line 2713 at 2026-10-11 13:58:45.514 (count unavailable)
+0x1C3E162F,Chase traffic 5,0,61,50,,ASI discovery
+0x1C3E162F,Chase traffic 5,0,68,72,,ASI discovery
+0x1C3E162F,Chase traffic 5,0,75,175,,ASI discovery
+0x1C3E162F,Chase traffic 5,0,108,3,,ASI discovery
+0x1C3E162F,Chase traffic 5,0,147,97,,ASI discovery
+0x1E74118F,Online Traffic Easy,0,150,0,134.0,earlier x32dbg
+0x1E74118F,Online Traffic Easy,1,181,0,219.0,earlier x32dbg
+0x1E74118F,Online Traffic Easy,2,182,0,194.0,earlier x32dbg
+0x30EC7D98,Chapter 6,0,30,515,,ASI discovery
+0x30EC7D98,Chapter 6,0,40,466,,ASI discovery
+0x30EC7D98,Chapter 6,0,47,39,,ASI discovery
+0x30EC7D98,Chapter 6,0,62,703,,ASI discovery
+0x30EC7D98,Chapter 6,0,69,212,,ASI discovery
+0x30EC7D98,Chapter 6,0,76,968,,ASI discovery
+0x30EC7D98,Chapter 6,0,114,7,,ASI discovery
+0x30EC7D98,Chapter 6,0,115,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0x30EC7D98,Chapter 6,0,116,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0x30EC7D98,Chapter 6,0,119,,,ASI runtime DISCOVER; TrafficRandomizer(2).log line 2089 at 2026-10-11 13:29:48.999 (count unavailable)
+0x30EC7D98,Chapter 6,0,137,580,,ASI discovery
+0x3781B981,Chapter 2,0,28,0,1.0,earlier x32dbg
+0x3781B981,Chapter 2,0,43,0,23.0,earlier x32dbg
+0x3781B981,Chapter 2,0,72,0,207.0,earlier x32dbg
+0x3781B981,Chapter 2,0,187,0,23.0,earlier x32dbg
+0x3DCD8BC2,Chapter 1 Kidnapped,0,34,0,2.0,earlier x32dbg
+0x3DCD8BC2,Chapter 1 Kidnapped,0,165,0,272.0,earlier x32dbg
+0x40868917,Chapter 3,0,27,895,,ASI discovery
+0x40868917,Chapter 3,0,36,1097,,ASI discovery
+0x40868917,Chapter 3,0,44,99,,ASI discovery
+0x40868917,Chapter 3,0,59,1191,,ASI discovery
+0x40868917,Chapter 3,0,66,441,,ASI discovery
+0x40868917,Chapter 3,0,73,1539,,ASI discovery
+0x40868917,Chapter 3,0,91,2029,,ASI discovery
+0x40868917,Chapter 3,0,188,1296,,ASI discovery
+0x40868917,Chapter 3,1,202,1597,,ASI discovery; TrafficRandomizer_tables(5).csv
+0x409E0517,Epilogue,0,33,1784,,ASI discovery
+0x41E3DE48,Chapter 1 Breaking News,0,191,0,268.0,earlier x32dbg
+0x47EB4D0E,Chapter 7,0,31,260,,ASI discovery
+0x47EB4D0E,Chapter 7,0,41,467,,ASI discovery
+0x47EB4D0E,Chapter 7,0,48,76,,ASI discovery
+0x47EB4D0E,Chapter 7,0,56,13,,ASI discovery
+0x47EB4D0E,Chapter 7,0,63,479,,ASI discovery
+0x47EB4D0E,Chapter 7,0,70,407,,ASI discovery
+0x47EB4D0E,Chapter 7,0,77,990,,ASI discovery
+0x47EB4D0E,Chapter 7,0,121,,,ASI runtime DISCOVER; TrafficRandomizer(2).log line 2348 at 2026-10-11 13:41:13.276 (count unavailable)
+0x47EB4D0E,Chapter 7,0,123,82,,ASI discovery
+0x47EB4D0E,Chapter 7,0,125,36,,ASI discovery
+0x47EB4D0E,Chapter 7,0,127,14,,ASI discovery
+0x47EB4D0E,Chapter 7,0,129,130,,ASI discovery
+0x47EB4D0E,Chapter 7,0,131,,,ASI runtime DISCOVER; TrafficRandomizer(2).log line 2406 at 2026-10-11 13:43:43.829 (count unavailable)
+0x47EB4D0E,Chapter 7,0,133,,,ASI runtime DISCOVER; TrafficRandomizer(2).log line 2332 at 2026-10-11 13:40:27.212 (count unavailable)
+0x47EB4D0E,Chapter 7,0,135,,,ASI runtime DISCOVER; TrafficRandomizer(2).log line 2284 at 2026-10-11 13:38:34.156 (count unavailable)
+0x47EB4D0E,Chapter 7,0,138,727,,ASI discovery
+0x4DF9D266,DeactivatingBombs,0,153,1162,,ASI discovery
+0x4DF9D266,DeactivatingBombs,0,154,78,,ASI discovery
+0x5F88E6C4,Online Traffic Pursuit,0,176,1847,,ASI discovery (CSV 4)
+0x5F88E6C4,Online Traffic Pursuit,1,185,1244,,ASI discovery (CSV 4)
+0x6B933525,Chapter 6 - Special Edition,0,159,1446,,ASI discovery
+0x6BC6C949,Chapter 5 Raceaway,0,25,25,,ASI discovery
+0x6BC6C949,Chapter 5 Raceaway,0,35,509,,ASI discovery
+0x6BC6C949,Chapter 5 Raceaway,0,37,267,,ASI discovery
+0x6BC6C949,Chapter 5 Raceaway,0,46,23,,ASI discovery
+0x6BC6C949,Chapter 5 Raceaway,0,61,168,,ASI discovery
+0x6BC6C949,Chapter 5 Raceaway,0,68,9,,ASI discovery
+0x6BC6C949,Chapter 5 Raceaway,0,75,420,,ASI discovery
+0x6BC6C949,Chapter 5 Raceaway,0,106,36,,ASI discovery
+0x6BC6C949,Chapter 5 Raceaway,0,111,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0x6BC6C949,Chapter 5 Raceaway,0,112,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0x6BC6C949,Chapter 5 Raceaway,0,147,24,,ASI discovery
+0x6CDE3ABD,Exposition Drive,0,140,1387,,ASI discovery
+0x6CDE3ABD,Exposition Drive,0,142,44,,ASI discovery
+0x763F2E5C,Online Traffic Survival,0,201,1311,,ASI discovery (CSV 4)
+0x7A77B252,Chapter 6 Best Defence,0,192,1413,,ASI discovery
+0x7EA32CA7,Online Traffic Sprint GP,0,150,652,,ASI discovery (CSV 4)
+0x7EA32CA7,Online Traffic Sprint GP,1,181,634,,ASI discovery (CSV 4)
+0x7EA32CA7,Online Traffic Sprint GP,2,182,698,,ASI discovery (CSV 4)
+0x825A838C,Chase traffic 2,0,177,798,,ASI discovery
+0x8489976F,Cut scene traffic,0,160,2180,,ASI discovery
+0x859FB6BD,Chapter 5 - Test Drive,0,170,1497,,ASI discovery
+0x8BBF4193,Chapter 7 s,0,174,1824,,ASI discovery
+0x8FCB768E,Chapter 1 College Fund,0,34,0,286.0,earlier x32dbg
+0x923EF4AB,Exposition Chase,0,164,1953,,ASI discovery
+0x934D7C19,SM5 Something Weird ,0,146,2395,,ASI discovery
+0x960394CA,Online Traffic Hard,0,151,74,,ASI discovery
+0x960394CA,Online Traffic Hard,0,198,1552,,ASI discovery
+0x960394CA,Online Traffic Hard,1,183,98,,ASI discovery
+0x960394CA,Online Traffic Hard,1,199,1183,,ASI discovery
+0x960394CA,Online Traffic Hard,2,184,38,,ASI discovery
+0x960394CA,Online Traffic Hard,2,200,1437,,ASI discovery
+0x9BD98676,Free Drive,0,23,2189,,ASI discovery
+0xA1C8F477,Exposition Shift,0,161,1234,,ASI discovery
+0xA2606541,SM4 Collateral Damage,0,29,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xA2606541,SM4 Collateral Damage,0,39,325,,ASI discovery
+0xA2606541,SM4 Collateral Damage,0,45,216,,ASI discovery
+0xA2606541,SM4 Collateral Damage,0,60,83,,ASI discovery
+0xA2606541,SM4 Collateral Damage,0,67,414,,ASI discovery
+0xA2606541,SM4 Collateral Damage,0,74,728,,ASI discovery
+0xA2606541,SM4 Collateral Damage,0,100,42,,ASI discovery
+0xA2606541,SM4 Collateral Damage,0,101,99,,ASI discovery
+0xA2606541,SM4 Collateral Damage,0,102,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xA2606541,SM4 Collateral Damage,0,103,94,,ASI discovery
+0xA2606541,SM4 Collateral Damage,0,104,814,,ASI discovery
+0xA5CD5915,Chapter 3 Team Colours ,0,36,609,,ASI discovery
+0xA5CD5915,Chapter 3 Team Colours ,0,44,2,,ASI discovery
+0xA5CD5915,Chapter 3 Team Colours ,0,52,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xA5CD5915,Chapter 3 Team Colours ,0,59,105,,ASI discovery
+0xA5CD5915,Chapter 3 Team Colours ,0,66,37,,ASI discovery
+0xA5CD5915,Chapter 3 Team Colours ,0,73,453,,ASI discovery
+0xA5CD5915,Chapter 3 Team Colours ,0,91,430,,ASI discovery
+0xA9E52C22,Chapter 5,0,25,52,,ASI discovery
+0xA9E52C22,Chapter 5,0,37,672,,ASI discovery
+0xA9E52C22,Chapter 5,0,46,32,,ASI discovery
+0xA9E52C22,Chapter 5,0,54,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xA9E52C22,Chapter 5,0,61,423,,ASI discovery
+0xA9E52C22,Chapter 5,0,68,91,,ASI discovery
+0xA9E52C22,Chapter 5,0,75,842,,ASI discovery
+0xA9E52C22,Chapter 5,0,105,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xA9E52C22,Chapter 5,0,106,109,,ASI discovery
+0xA9E52C22,Chapter 5,0,107,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xA9E52C22,Chapter 5,0,108,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xA9E52C22,Chapter 5,0,110,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xA9E52C22,Chapter 5,0,111,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xA9E52C22,Chapter 5,0,112,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xA9E52C22,Chapter 5,0,147,287,,ASI discovery
+0xABF0BD85,Challenge traffic heavy,0,27,124,,ASI discovery
+0xABF0BD85,Challenge traffic heavy,0,36,237,,ASI discovery
+0xABF0BD85,Challenge traffic heavy,0,44,41,,ASI discovery
+0xABF0BD85,Challenge traffic heavy,0,52,5,,ASI discovery
+0xABF0BD85,Challenge traffic heavy,0,59,202,,ASI discovery
+0xABF0BD85,Challenge traffic heavy,0,66,7,,ASI discovery
+0xABF0BD85,Challenge traffic heavy,0,73,280,,ASI discovery
+0xABF0BD85,Challenge traffic heavy,0,91,320,,ASI discovery
+0xABF0BD85,Challenge traffic heavy,0,188,148,,ASI discovery
+0xAE88E83B,Chapter 1,0,26,0,1.0,earlier x32dbg
+0xAE88E83B,Chapter 1,0,42,0,20.0,earlier x32dbg
+0xAE88E83B,Chapter 1,0,58,0,227.0,earlier x32dbg
+0xAE88E83B,Chapter 1,0,186,0,26.0,earlier x32dbg
+0xB066DC97,Chapter 2 Streetrace,0,28,88,,ASI discovery
+0xB066DC97,Chapter 2 Streetrace,0,38,553,,ASI discovery
+0xB066DC97,Chapter 2 Streetrace,0,43,29,,ASI discovery
+0xB066DC97,Chapter 2 Streetrace,0,51,42,,ASI discovery
+0xB066DC97,Chapter 2 Streetrace,0,65,25,,ASI discovery
+0xB066DC97,Chapter 2 Streetrace,0,72,586,,ASI discovery
+0xB066DC97,Chapter 2 Streetrace,0,88,541,,ASI discovery
+0xB066DC97,Chapter 2 Streetrace,0,89,380,,ASI discovery
+0xBA946CD9,Chapter 2 LFK,0,167,1319,,ASI discovery
+0xBE043E76,Exposition Bullrun,0,141,1132,,ASI discovery
+0xBE043E76,Exposition Bullrun,0,161,1280,,ASI discovery
+0xC9E262C0,Chapter 7 Alone,0,173,1566,,ASI discovery
+0xD433D631,Challenge traffic,0,26,123,,ASI discovery
+0xD433D631,Challenge traffic,0,34,1266,,ASI discovery
+0xD433D631,Challenge traffic,0,58,23,,ASI discovery
+0xD433D631,Challenge traffic,1,194,787,,ASI discovery; TrafficRandomizer_tables(6).csv
+0xD433D631,Challenge traffic,2,195,760,,ASI discovery; TrafficRandomizer_tables(6).csv
+0xD433D631,Challenge traffic,3,196,794,,ASI discovery; TrafficRandomizer_tables(6).csv
+0xD754509F,Chapter 8,0,49,799,,ASI discovery
+0xD754509F,Chapter 8,0,139,625,,ASI discovery
+0xDDA6CCDA,SM3 Peroxide Convoy,0,27,160,,ASI discovery
+0xDDA6CCDA,SM3 Peroxide Convoy,0,36,269,,ASI discovery
+0xDDA6CCDA,SM3 Peroxide Convoy,0,44,5,,ASI discovery
+0xDDA6CCDA,SM3 Peroxide Convoy,0,52,30,,ASI discovery
+0xDDA6CCDA,SM3 Peroxide Convoy,0,59,295,,ASI discovery
+0xDDA6CCDA,SM3 Peroxide Convoy,0,66,27,,ASI discovery
+0xDDA6CCDA,SM3 Peroxide Convoy,0,73,118,,ASI discovery
+0xDDA6CCDA,SM3 Peroxide Convoy,0,149,203,,ASI discovery
+0xDDA6CCDA,SM3 Peroxide Convoy,0,158,152,,ASI discovery
+0xDEE21CB4,Chapter 4,0,29,20,,ASI discovery
+0xDEE21CB4,Chapter 4,0,39,327,,ASI discovery
+0xDEE21CB4,Chapter 4,0,45,28,,ASI discovery
+0xDEE21CB4,Chapter 4,0,53,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xDEE21CB4,Chapter 4,0,60,298,,ASI discovery
+0xDEE21CB4,Chapter 4,0,67,109,,ASI discovery
+0xDEE21CB4,Chapter 4,0,74,484,,ASI discovery
+0xDEE21CB4,Chapter 4,0,100,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xDEE21CB4,Chapter 4,0,101,55,,ASI discovery
+0xDEE21CB4,Chapter 4,0,102,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xDEE21CB4,Chapter 4,0,103,,,TrafficRandomizer(1).log (v0.5.1 2026-10-11)
+0xDEE21CB4,Chapter 4,0,104,451,,ASI discovery
+0xDEE21CB4,Chapter 4,0,189,209,,ASI discovery
+0xDEE21CB4,Chapter 4,1,188,34,,ASI discovery; TrafficRandomizer_tables(5).csv
+0xDEE21CB4,Chapter 4,1,193,1174,,ASI discovery; TrafficRandomizer_tables(5).csv
+0xDEE21CB4,Chapter 4,2,203,1564,,ASI discovery; TrafficRandomizer_tables(5).csv
+0xE3517AD3,Online Traffic ,0,19,1398,,"ASI discovery, 14 archived sessions; Lua name ScriptsLuaScripts/gamelogic/phasemanager/onlinemissionsync/onlinemissionsync.lua (CRC32 init FFFFFFFF)"
+0xE3D5685A,Online Traffic Trailblazer,0,19,2116,,ASI discovery (CSV 4)
+0xE3D5685A,Online Traffic Trailblazer,1,179,183,,ASI discovery (CSV 4)
+0xE3D5685A,Online Traffic Trailblazer,2,180,1791,,ASI discovery; TrafficRandomizer_tables(5).csv
+0xEF19694A,Exposition,0,140,1383,,ASI discovery
+0xF0A58D0E,Online Traffic Jump,0,190,323,,ASI discovery; TrafficRandomizer_tables(5).csv
+0xF277ADC8,Mind Control,0,71,2118,,ASI discovery
+0xF55DB31A,Chase traffic 3,0,27,28,,ASI discovery
+0xF55DB31A,Chase traffic 3,0,36,112,,ASI discovery
+0xF55DB31A,Chase traffic 3,0,44,6,,ASI discovery
+0xF55DB31A,Chase traffic 3,0,59,66,,ASI discovery
+0xF55DB31A,Chase traffic 3,0,66,33,,ASI discovery
+0xF55DB31A,Chase traffic 3,0,73,19,,ASI discovery
+0xF55DB31A,Chase traffic 3,0,91,108,,ASI discovery
+0xF55DB31A,Chase traffic 3,0,188,37,,ASI discovery
+0xFA0027C6,Chapter 6 - The target,0,157,1306,,ASI discovery
+0xFFF9B540,Online Traffic Takedown,0,197,939,,ASI discovery (CSV 4)

@@ -1,0 +1,21 @@
+DriverSF Traffic Editor v0.1.6 — offline tests
+
+$ /mnt/data/DriverSF_TrafficEditor_v0_1_6_Source/verification/verify_catalog.py
+PASS: 208 table definitions and 213 archived runtime associations across 135 tables
+PASS: 73 unnamed tables, no guessed category labels or source strings in UI
+PASS: case-insensitive Contains on names, numbers and hex substrings; XAML/event wiring
+
+$ /mnt/data/DriverSF_TrafficEditor_v0_1_6_Source/verification/verify_theme.py
+PASS Light: 23 palette keys, all 7 text/surface pairings >= 4.5:1
+PASS Dark: 23 palette keys, all 7 text/surface pairings >= 4.5:1
+PASS: XAML parses, palettes match, no static palette brush references, and essential control names exist
+
+$ /mnt/data/DriverSF_TrafficEditor_v0_1_6_Source/verification/verify_resources.py /mnt/data/traffic_hex_replacement/san_franciscoAI_original(2).fchunk
+PASS: CHNK/AIRT header and 0x433000-byte PC file
+PASS: 58 spooling metadata records, 77 nonempty groups and 1,318 vehicle slots
+PASS: 208 metadata records and 39,728 weight rows; weight sums match
+PASS: 208 editable profiles with valid table indices
+PASS: scratch memory patch 124 -> 208 and float transfer, only expected offsets modified
+PASS: input resource never altered
+
+Windows WPF compilation was not executed here.
