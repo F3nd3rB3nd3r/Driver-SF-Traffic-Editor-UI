@@ -56,8 +56,9 @@ for name in ('ProfileNumberSearchBox','ProfileCountLabel','ProfilesList','Weight
     assert f'Name="{name}"' in ui,name
 for handler in set(re.findall(r'(?:Click|SelectionChanged|TextChanged|CellEditEnding)="([A-Za-z_][A-Za-z0-9_]*)"',ui)):
     assert re.search(r'\b'+handler+r'\s*\(',code),handler
-assert 'all 208 probability tables' in ui
-assert 'all 208 tables' in code
+assert 'SelectionMode="Extended"' in ui
+assert 'AddVehicles_Click' in code and 'RemoveVehicles_Click' in code
+assert 'doc.Profiles.Count' in code
 print('PASS: 208 table definitions and 213 archived runtime associations across 135 tables')
 print('PASS: 73 unnamed tables, no guessed category labels or source strings in UI')
 print('PASS: case-insensitive Contains on names, numbers and hex substrings; XAML/event wiring')

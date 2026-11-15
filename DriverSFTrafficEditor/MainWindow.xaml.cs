@@ -69,6 +69,11 @@ public partial class MainWindow : Window
         ReportButton.IsEnabled = ready;
         ReplaceSpoolButton.IsEnabled = ready;
         TransferButton.IsEnabled = ready;
+        AddVehicleButton.IsEnabled = ready;
+        RemoveVehicleButton.IsEnabled = ready;
+        SetWeightButton.IsEnabled = ready;
+        ImportLuaButton.IsEnabled = ready;
+        CapacityButton.IsEnabled = ready;
     }
 
     private bool ConfirmDiscard()
@@ -91,7 +96,9 @@ public partial class MainWindow : Window
         try
         {
             var doc = TrafficDocument.Load(picker.FileName);
+            if (_document is not null) _document.Changed -= DocumentChanged;
             _document = doc;
+            doc.Changed += DocumentChanged;
             _lastSavedSha256 = null;
             _lastSaveName = Path.GetFileNameWithoutExtension(picker.FileName) + "_edited.fchunk";
             FileLabel.Text = $"SOURCE  {doc.SourcePath}     |     {doc.OriginalSha256[..16]}… SHA-256";
@@ -106,13 +113,9 @@ public partial class MainWindow : Window
             _profileView.SortDescriptions.Add(new SortDescription(nameof(WeightProfile.Number), ListSortDirection.Ascending));
             ProfileNumberSearchBox.Clear();
             _profileView.Refresh();
-            ProfilesList.SelectedItem = doc.Profiles.First(p => p.Number == 26);
+            ProfilesList.SelectedItem = doc.Profiles.FirstOrDefault(p => p.Number == 26) ?? doc.Profiles[0];
             UpdateProfileCount();
             VehicleResults.Text = "Enter a vehicle ID above to find its locations in this resource.";
-            foreach (var row in doc.Sets.SelectMany(s => s.Groups).SelectMany(g => g.Rows))
-                row.PropertyChanged += ModelRowChanged;
-            foreach (var row in doc.Profiles.SelectMany(p => p.Rows))
-                row.PropertyChanged += ModelRowChanged;
             SetEditingEnabled(true);
             UpdateStatus($"Loaded and validated: {doc.Sets.Count} sets, {doc.Profiles.Count} editable weight tables.");
         }
@@ -123,13 +126,97 @@ public partial class MainWindow : Window
         }
     }
 
-    private void ModelRowChanged(object? sender, PropertyChangedEventArgs e)
+    private void DocumentChanged(object? sender, EventArgs e)
     {
-        if (e.PropertyName is nameof(SpoolRow.VehicleId) or nameof(WeightRow.Weight))
+        UpdateStatus();
+        RefreshProfileTotal();
+        RefreshProfileInfo();
+    }
+
+    private void RefreshProfileInfo()
+    {
+        if (ProfilesList.SelectedItem is WeightProfile p)
+            ProfileInfo.Text = $"Loaded metadata {p.MetaHex} | loaded rows {p.DataHex} | {p.Rows.Count} ID/Float32 rows | {ProfilesList.SelectedItems.Count} table(s) selected";
+    }
+
+    private WeightProfile[] TargetProfiles() => _document is null ? Array.Empty<WeightProfile>() :
+        AllTablesCheck.IsChecked == true ? _document.Profiles.ToArray() : ProfilesList.SelectedItems.Cast<WeightProfile>().ToArray();
+
+    private void Capacity_Click(object sender, RoutedEventArgs e)
+    {
+        if (_document is null || !CommitEdits()) return;
+        VehicleResults.Text = _document.CapacityReport();
+        MainTabs.SelectedIndex = 2;
+    }
+
+    private void AddVehicles_Click(object sender, RoutedEventArgs e)
+    {
+        if (_document is null || !CommitEdits()) return;
+        try
         {
-            UpdateStatus();
-            RefreshProfileTotal();
+            uint[] ids = VehicleIdInput.Parse(AddVehicleIds.Text);
+            if (!float.TryParse(InitialWeight.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float weight) ||
+                !float.IsFinite(weight) || weight < 0)
+                throw new FormatException("Initial weight must be a finite nonnegative Float32 value; use a decimal point.");
+            var targets = TargetProfiles();
+            if (targets.Length == 0) throw new InvalidOperationException("Select at least one probability table.");
+            int added = _document.AddVehicles(targets, ids, weight);
+            UpdateStatus($"Added {added} row(s) across {targets.Length} table(s). Existing IDs and weights were kept.");
         }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "Cannot add vehicles", MessageBoxButton.OK, MessageBoxImage.Warning); }
+    }
+
+    private void ImportVehicleStats_Click(object sender, RoutedEventArgs e)
+    {
+        var picker = new OpenFileDialog
+        {
+            Title = "Import vehicle IDs from vehicleStats",
+            Filter = "Lua vehicle stats (*.lua)|*.lua|All files (*.*)|*.*",
+            CheckFileExists = true
+        };
+        if (picker.ShowDialog(this) != true) return;
+        try
+        {
+            uint[] ids = VehicleStatsInput.Parse(File.ReadAllText(picker.FileName));
+            AddVehicleIds.Text = string.Join(", ", ids);
+            UpdateStatus($"Imported {ids.Length} unique vehicle IDs from {Path.GetFileName(picker.FileName)}. Choose the tables and weight, then apply an action.");
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "Cannot import vehicle IDs", MessageBoxButton.OK, MessageBoxImage.Warning); }
+    }
+
+    private void SetWeights_Click(object sender, RoutedEventArgs e)
+    {
+        if (_document is null || !CommitEdits()) return;
+        try
+        {
+            uint[] ids = VehicleIdInput.Parse(AddVehicleIds.Text);
+            if (!float.TryParse(InitialWeight.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float weight) ||
+                !float.IsFinite(weight) || weight < 0)
+                throw new FormatException("Weight must be a finite nonnegative Float32 value; use a decimal point.");
+            var targets = TargetProfiles();
+            if (targets.Length == 0) throw new InvalidOperationException("Select at least one probability table.");
+            var result = _document.SetVehicleWeights(targets, ids, weight, CreateMissingCheck.IsChecked == true);
+            int maximum = _document.CapacityRequirements().Select(r => r.UnionIds).DefaultIfEmpty().Max();
+            UpdateStatus($"Set weight {weight:G9} across {targets.Length} table(s): {result.Updated} updated, {result.Added} added, {result.MissingSkipped} missing skipped. Max routed roster: {maximum} IDs.");
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "Cannot set weights", MessageBoxButton.OK, MessageBoxImage.Warning); }
+    }
+
+    private void RemoveVehicles_Click(object sender, RoutedEventArgs e)
+    {
+        if (_document is null || !CommitEdits()) return;
+        try
+        {
+            uint[] ids = string.IsNullOrWhiteSpace(AddVehicleIds.Text)
+                ? WeightGrid.SelectedItems.Cast<WeightRow>().Select(r => r.VehicleId).Distinct().ToArray()
+                : VehicleIdInput.Parse(AddVehicleIds.Text);
+            if (ids.Length == 0) throw new InvalidOperationException("Enter IDs above, or select rows in the grid with the ID box empty.");
+            var targets = TargetProfiles();
+            if (targets.Length == 0) throw new InvalidOperationException("Select at least one probability table.");
+            int removed = _document.RemoveVehicles(targets, ids);
+            UpdateStatus($"Removed {removed} row(s) across {targets.Length} table(s).");
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "Cannot remove vehicles", MessageBoxButton.OK, MessageBoxImage.Warning); }
     }
 
     private bool FilterSet(object item)
@@ -154,7 +241,7 @@ public partial class MainWindow : Window
             return;
         }
         SetTitle.Text = set.Name;
-        SetInfo.Text = $"Record {set.Index}   •   CRC32 {set.HashHex}   •   metadata {set.MetaHex}   •   {set.IdCount} resident IDs";
+        SetInfo.Text = $"Record {set.Index}   •   CRC32 {set.HashHex}   •   metadata {set.MetaHex}   •   {set.IdCount} native spool IDs";
         GroupPicker.ItemsSource = set.Groups;
         GroupPicker.SelectedIndex = 0;
     }
@@ -183,7 +270,7 @@ public partial class MainWindow : Window
     {
         if (ProfileCountLabel is null || _profileView is null) return;
         int count = _profileView.Cast<object>().Count();
-        ProfileCountLabel.Text = $"Showing {count} of 208 tables";
+        ProfileCountLabel.Text = $"Showing {count} of {_document?.Profiles.Count ?? 0} tables";
     }
 
     private void ProfileFilter_Changed(object sender, RoutedEventArgs e)
@@ -209,7 +296,7 @@ public partial class MainWindow : Window
             return;
         }
         ProfileTitle.Text = $"Table {profile.Number} — {profile.Definition.Name}";
-        ProfileInfo.Text = $"Metadata {profile.MetaHex}   •   entry data {profile.DataHex}   •   191 fixed ID/Float32 entries";
+        RefreshProfileInfo();
         WeightGrid.ItemsSource = profile.Rows;
         _weightView = CollectionViewSource.GetDefaultView(WeightGrid.ItemsSource);
         _weightView.Filter = FilterWeight;
@@ -221,7 +308,7 @@ public partial class MainWindow : Window
     {
         if (TotalLabel is null) return;
         if (ProfilesList.SelectedItem is WeightProfile p)
-            TotalLabel.Text = $"Total weight: {p.CurrentTotal.ToString("0.####", CultureInfo.CurrentCulture)}";
+            TotalLabel.Text = $"Total weight: {p.CurrentTotal.ToString("0.####", CultureInfo.CurrentCulture)} | {p.Rows.Count(r => r.Weight > 0)} positive IDs";
         else TotalLabel.Text = "";
     }
 
@@ -305,7 +392,7 @@ public partial class MainWindow : Window
         var dst = profile.Rows.FirstOrDefault(r => r.VehicleId == newId);
         if (src is null || dst is null)
         {
-            MessageBox.Show("Both IDs must already be present in this 191-entry table. This tool does not insert new rows.");
+            MessageBox.Show("Both IDs must be present in this table. Use Add or remove vehicle rows to insert a missing ID first.");
             return;
         }
         if (src.Weight == 0)
@@ -403,7 +490,7 @@ public partial class MainWindow : Window
         b.AppendLine($"Vehicle ID {id} / 0x{id:X4}");
         b.AppendLine("All offsets are hexadecimal FILE offsets in the loaded resource.");
         b.AppendLine(new string('─', 74));
-        b.AppendLine("SPOOLING REFERENCES (all 58 settings)");
+        b.AppendLine($"SPOOLING REFERENCES (all {doc.Sets.Count} settings)");
         int spoolHits = 0;
         foreach (var set in doc.Sets)
         foreach (var group in set.Groups)
@@ -415,7 +502,7 @@ public partial class MainWindow : Window
         }
         if (spoolHits == 0) b.AppendLine("  None in the edited spooling lists.");
         b.AppendLine();
-        b.AppendLine("NONZERO PROBABILITY WEIGHTS (all 208 tables)");
+        b.AppendLine($"NONZERO PROBABILITY WEIGHTS (all {doc.Profiles.Count} tables)");
         int weightHits = 0, tableRows = 0;
         foreach (var p in doc.Profiles)
         foreach (var row in p.Rows)
@@ -426,10 +513,10 @@ public partial class MainWindow : Window
             weightHits++;
             b.AppendLine($"  Table {p.Number,-3}  weight {row.Weight.ToString("0.########", CultureInfo.InvariantCulture),-10}  weight at {row.OffsetHex}  {p.Definition.Name}");
         }
-        if (weightHits == 0) b.AppendLine("  No positive weights among the 208 tables.");
+        if (weightHits == 0) b.AppendLine("  No positive weights in the loaded tables.");
         b.AppendLine();
         b.AppendLine($"Found: {spoolHits} spool slot(s), {weightHits} positive weights, {tableRows} total table rows.");
-        b.AppendLine("All 208 weight tables were searched, including unconfirmed tables.");
+        b.AppendLine($"All {doc.Profiles.Count} weight tables were searched.");
         VehicleResults.Text = b.ToString();
     }
 
@@ -441,7 +528,7 @@ public partial class MainWindow : Window
             StatusLabel.Text = message ?? "Ready. Open a PC .fchunk to edit.";
             return;
         }
-        string tally = $"Pending edits: {_document.SpoolEdits} spooling IDs  /  {_document.WeightEdits} weight values";
+        string tally = $"Pending edits: {_document.SpoolEdits} spooling IDs  /  {_document.WeightEdits} probability row changes";
         StatusLabel.Text = message is null ? tally : $"{message}   |   {tally}";
     }
 

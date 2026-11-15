@@ -83,10 +83,10 @@ public sealed class WeightRow : NotifyRow
     public int IdFileOffset { get; }
     public int WeightFileOffset => IdFileOffset + 4;
     public string IdHex => $"0x{VehicleId:X4}";
-    public string OffsetHex => $"0x{WeightFileOffset:X6}";
-    public string IdOffsetHex => $"0x{IdFileOffset:X6}";
+    public string OffsetHex => IdFileOffset < 0 ? "New entry" : $"0x{WeightFileOffset:X6}";
+    public string IdOffsetHex => IdFileOffset < 0 ? "New entry" : $"0x{IdFileOffset:X6}";
     public float OriginalWeight { get; }
-    public bool IsModified => (float)_weight != OriginalWeight;
+    public bool IsModified => IdFileOffset < 0 || (float)_weight != OriginalWeight;
     public string FloatHex => $"0x{BitConverter.SingleToUInt32Bits((float)_weight):X8}";
 
     public double Weight

@@ -67,8 +67,8 @@ public static class TrafficNames
 
     public static string Resolve(int record, uint hash)
     {
-        if ((uint)record < Names.Length && Names[record].Hash == hash)
-            return Names[record].Name;
+        foreach (var entry in Names)
+            if (entry.Hash == hash) return entry.Name;
         return $"[Unknown name] (hash 0x{hash:X8})";
     }
 }

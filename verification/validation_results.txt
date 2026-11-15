@@ -1,21 +1,63 @@
-DriverSF Traffic Editor v0.1.6 — offline tests
+Driver SF TrafficEditor 0.3 validation — 2026-11-15
 
-$ /mnt/data/DriverSF_TrafficEditor_v0_1_6_Source/verification/verify_catalog.py
-PASS: 208 table definitions and 213 archived runtime associations across 135 tables
-PASS: 73 unnamed tables, no guessed category labels or source strings in UI
-PASS: case-insensitive Contains on names, numbers and hex substrings; XAML/event wiring
+Bulk-weight update and vehicleStats import:
+- Release WPF/.NET 10 build/publish pass with 0 warnings/errors.
+- ALL 89 CORE CHECKS PASSED, including the 57 inherited serializer checks below.
+- Bulk set updates listed existing IDs, optionally inserts missing rows, skips
+  absent IDs in existing-only mode, and preserves all unrelated rows/tables.
+- One document notification per batch; idempotent repeat and weight0 are tested.
+- Invalid IDs/weights and a later-table Float32 overflow are rejected before any
+  table is mutated.
+- Literal vehicleStats numeric keys import without executing Lua; nested keys,
+  comments, quoted/long strings do not contribute IDs. Computed/invalid keys,
+  ambiguous post-table mutation and malformed input are rejected. A terminal
+  return is supported and duplicate keys are deduplicated.
+- Actual extracted vehiclestats.lua imports146 IDs. On a scratch copy of the
+  supplied expanded AI, setting them to1 in its19 expanded tables changes2697
+  existing weights, adds0 rows, and leaves unlisted IDs/unselected tables intact.
+- Output saves/reopens and passes independent CHNK/opaque-payload validation.
+  Independent byte comparison allows changes only to selected weights/totals.
+- Independent Unlimiter routing audit agrees on a maximum280 requested IDs.
+  The160-request configuration cannot cover this newly enabled roster.
+- Lua and both game input files remain unchanged. No AI/INI/ASI deployment,
+  game or debugger launch, or GUI interaction test occurred.
 
-$ /mnt/data/DriverSF_TrafficEditor_v0_1_6_Source/verification/verify_theme.py
-PASS Light: 23 palette keys, all 7 text/surface pairings >= 4.5:1
-PASS Dark: 23 palette keys, all 7 text/surface pairings >= 4.5:1
-PASS: XAML parses, palettes match, no static palette brush references, and essential control names exist
+Inherited serializer coverage (retained and rerun):
 
-$ /mnt/data/DriverSF_TrafficEditor_v0_1_6_Source/verification/verify_resources.py /mnt/data/traffic_hex_replacement/san_franciscoAI_original(2).fchunk
-PASS: CHNK/AIRT header and 0x433000-byte PC file
-PASS: 58 spooling metadata records, 77 nonempty groups and 1,318 vehicle slots
-PASS: 208 metadata records and 39,728 weight rows; weight sums match
-PASS: 208 editable profiles with valid table indices
-PASS: scratch memory patch 124 -> 208 and float transfer, only expected offsets modified
-PASS: input resource never altered
+Windows / .NET SDK 10.0.401; Release WPF build and framework-dependent publish pass.
+All57 original checks pass using the authorized Save Bug Test PC AI file.
+The source AI is 4,403,200 bytes, SHA256:
+434e1a516fb88a91fdaa02e2c35ac44f460c804ff312c04232a5bed011d8db13
+This source has modified probabilities; tests do not assume vanilla weights.
 
-Windows WPF compilation was not executed here.
+Passed:
+- all 59 settings, 80 nonempty native frequency groups and 1369 native IDs;
+- original 208 x 191 and expanded 208 x 1000 probability rows;
+- single and selected-table expansion, ID65535, zero-weight additions;
+- byte-identical no-op saves; isolated weight/total and native spool edits;
+- unrelated AIEX bytes, AIRF, CHNK descriptor attributes and names preserved;
+- repeat growth/shrink reuses the appended weight array;
+- ten reopen/grow saves equal one bulk save byte-for-byte (no padding drift);
+- added/removed/new-row dirty tracking and duplicate-add preservation;
+- Float32/ID validation, overflow, aliases, invalid/truncated/overlapping files;
+- SaveAs verifies the file, writes a report and protects the loaded source;
+- R3 static routed request unions, including native IDs and disabled rows;
+- independent Python binary validation and opaque payload comparison;
+- catalog and 213 historical observations unchanged, UI events wired;
+- light/dark palette checks and XAML parsing.
+
+Expanded all-1000 fixture: 6,066,176 bytes, 208,000 row records.
+SHA256: 0570f90c612dc840b7cc1ba57de02cf524e0d34f608fe99cd12e1804e00c0a17
+Its maximum routed union is 959: the original weighted/native IDs plus 809 new
+positive IDs; the remaining original rows include zero weights. The independent
+R3 asset audit agrees. Test-only IDs/assets are not installed or bundled.
+
+Static native checks: AIEX loader 0040ADD0 calls 0040A7C0, which adds the root
+base to pointer +164 at 0040A89A. CHNK descriptors supply offsets, sizes,
+alignment, version and name length; serialized names follow child payloads.
+The serializer preserves labels and regenerates only alignment filler.
+
+No game, debugger or editor GUI launch occurred. No ASI, INI, game AI, model
+asset or save was changed. Expanded assets need a user game test with matching
+installed vehicles and Unlimiter configuration. This is offline serialization
+coverage, not validation of 1000-car gameplay or a complete UI interaction test.
